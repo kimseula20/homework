@@ -1,0 +1,25 @@
+version: '3.9'
+
+services: 
+    web: 
+        image: nginx:latest
+        ports: 
+            - "80:80"
+        volumes:
+          - ./src:/var/www/html
+          - ./site.conf:/etc/nginx/conf.d/site.conf
+        links:
+            - php
+    php:
+        image: jpswade/php7.4-fpm-alpine
+        volumes:
+        - ./src:/var/www/html
+    mysql:
+        image: mysql:5.7.22
+        ports:
+        - 3306:3306
+        environment:
+            MYSQL_ROOT_PASSWORD: 1234
+
+        volumes:
+        - ./database:/var/lib/mysql
