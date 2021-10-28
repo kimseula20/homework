@@ -6,14 +6,16 @@ services:
         ports: 
             - "80:80"
         volumes:
-          - ./src:/var/www/html
+          - ./laravel:/var/www/html
           - ./site.conf:/etc/nginx/conf.d/site.conf
         links:
             - php
     php:
-        image: jpswade/php7.4-fpm-alpine
+        build:
+            context: .
+            dockerfile: src/Dockerfile
         volumes:
-        - ./src:/var/www/html
+            - ./laravel:/var/www/html
     mysql:
         image: mysql:5.7.22
         ports:
