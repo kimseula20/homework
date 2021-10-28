@@ -20,7 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// Route::get('login/{email}/{upwd}', [LoginController::class, 'login'])->name('login');
+Route::get('/login', [LoginController::class, 'login']);
 // // Route::post('/login', [ApiController::class, 'login']);
 // Route::get('sign_up/{uname}/{nickname}/{upwd}/{uphone}/{email}/{gender}', [SignUpController::class, 'sign_up']);
 // // Route::post('/sign_up', [ApiController::class, 'sign_up']);
